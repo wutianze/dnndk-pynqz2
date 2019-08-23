@@ -1,0 +1,15 @@
+
+DNNC Kernel Information
+
+1. Overview
+kernel numbers  : 1
+kernel topology : mnist_kernel_graph.jpg
+
+2. Kernel Description in Detail
+kernel id       : 0
+kernel name     : mnist
+type            : DPUKernel
+nodes           : NA
+input node(s)   : conv2d_Conv2D(0) 
+output node(s)  : dense_1_MatMul(0) 
+
