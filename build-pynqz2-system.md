@@ -1,3 +1,14 @@
+<table>
+<tr>
+  <td colspan="4" align="center"><img src="./images/xilinx-logo.png" width="30%"/><h1>Edge AI Tutorials</h1>
+  </td>
+</tr>
+<tr>
+<td colspan="4" align="center"><h1>Zynq 7000 DPU TRD</h1>
+</td>
+</tr>
+</table>
+
 # Introduction
 
 This tutorial demonstrates how to build a custom system that utilizes the 1.4.0 version of Xilinx&reg; Deep Learning Processor (DPU) IP to accelerate machine learning algorithms using the following development flow:
