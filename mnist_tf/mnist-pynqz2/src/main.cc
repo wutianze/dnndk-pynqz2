@@ -138,6 +138,85 @@ void TopK(const float *d, int size, int k, vector<string> &vkinds, string name) 
 }
 
 /**
+ * @brief run classification task for Resnet_50
+ *
+ * @param taskConv - pointer to DPU task of Resnet_50
+ * @param img - the single image to be classified
+ * @param imname - the actual label of the img(for comparison)
+ *
+ * @return none
+ */
+/*
+vector<string> kinds; // Storing the label of Resnet_50
+queue<string> images; // Storing the list of images
+void run_resnet_50(DPUTask *taskConv, const Mat &img, string imname) {
+    assert(taskConv);
+    // Get the number of category in Resnet_50
+    int channel = dpuGetOutputTensorChannel(taskConv, CONV_OUTPUT_NODE);
+    // Get the scale of classification result
+    float scale = dpuGetOutputTensorScale(taskConv, CONV_OUTPUT_NODE);
+    vector<float> smRes (channel);
+    int8_t* fcRes;
+    // Set the input image to the DPU task
+    _T(dpuSetInputImage2(taskConv, CONV_INPUT_NODE, img));
+    // Processing the classification in DPU
+    _T(dpuRunTask(taskConv));
+    // Get the output tensor from DPU in DPU INT8 format
+    DPUTensor* dpuOutTensorInt8 = dpuGetOutputTensorInHWCInt8(taskConv, CONV_OUTPUT_NODE);
+    // Get the data pointer from the output tensor
+    fcRes = dpuGetTensorAddress(dpuOutTensorInt8);
+    // Processing softmax in DPU with batchsize=1
+    _T(dpuRunSoftmax(fcRes, smRes.data(), channel, 1, scale));
+    mutexshow.lock();
+    // Show the top 5 classification results with their label and probability
+    _T(TopK(smRes.data(), channel, 5, kinds, imname));
+    mutexshow.unlock();
+}
+*/
+/**
+ * @The entry of the whole classification process
+ *
+ * @param kernelconv - the pointer to DPU task of Resnet_50
+ *
+ * @return none
+ **/
+/*
+void classifyEntry(DPUKernel *kernelconv) {
+    ListImages(baseImagePath, images); // Load the list of images to be classified
+    if (images.size() == 0) {
+        cerr << "\nError: Not images exist in " << baseImagePath << endl;
+        return;
+    } else {
+        cout << "total image : " << images.size() << endl;
+    }
+
+    thread workers[threadnum];
+    auto _start = system_clock::now();
+    int size = images.size();
+    // Create DPU Tasks for Resnet_50 from DPU Kernel
+    DPUTask *taskconv = dpuCreateTask(kernelconv, 0);
+    while(true){
+	    string imageName = images.front();
+	    if(imageName == "")
+		break;
+		images.pop();
+	    Mat image = imread(baseImagePath + imageName);
+		// Classifying single image
+        run_resnet_50(taskconv, image, imageName);
+	}
+    // Destroy DPU Tasks & free resources
+    dpuDestroyTask(taskconv);
+        
+    }
+
+    auto _end = system_clock::now();
+    auto duration = (duration_cast<microseconds>(_end - _start)).count();
+    cout << "[Time]" << duration << "us" << endl;
+    cout << "[FPS]" << size*1000000.0/duration << endl;
+}
+*/
+
+/**
  * @brief Entry for running Resnet_50 neural network
  *
  */
@@ -161,9 +240,11 @@ int main(int argc ,char** argv) {
     cout << dpuGetInputTensorChannel(taskMnist, CONV_INPUT_NODE) << endl;
     */
 
-    Mat image = imread("../2.bmp",0);
-    float meanV[1] = {0.5f};
-    _T(dpuSetInputImage(taskMnist, CONV_INPUT_NODE, image,meanV))
+    Mat image = imread("tmp.bmp",0);
+    Scalar mM = mean(image);
+    float meanV[3] = {mM.val[0],mM.val[1],mM.val[2]};
+    
+    _T(dpuSetInputImage(taskMnist, CONV_INPUT_NODE, image,meanV));
     _T(dpuRunTask(taskMnist));
     float scale = dpuGetOutputTensorScale(taskMnist, CONV_OUTPUT_NODE);
     cout << dpuGetOutputTensorHeight(taskMnist, CONV_OUTPUT_NODE) << endl;
@@ -176,7 +257,7 @@ int main(int argc ,char** argv) {
     _T(dpuRunSoftmax(fcRes, smRes.data(),channel,1,scale));
     vector<string>kinds = {"0","1","2","3","4","5","6","7","8","9"};
 
-    _T(TopK(smRes.data(),channel,3,kinds,"2.bmp"));
+    _T(TopK(smRes.data(),channel,5,kinds,"tmp.bmp"));
     // The main classification function
     // classifyEntry(kernelConv);
     // Destroy the kernel of Resnet_50 after classification

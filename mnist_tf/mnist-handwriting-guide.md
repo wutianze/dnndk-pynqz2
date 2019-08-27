@@ -50,10 +50,10 @@ This tutorial provides all of the necessary scripts to execute a design.
 ## Copy the files to your board
 1. First copy the .elf file you built to mnist_tf/model/.
 2. Copy the directory mnist-pynqz2 to your PynqZ2. You can use MobaXterm to copy.
-3. In the board, `cd mnist-pynqz2`, run `make`, and `cd build`.
-4. Run the mnist using `./mnist`, the program will read the picture 2.bmp and you can see in the terminal that our network thinks the number is 2. If you want to add your own functions please modify the main.cc in src directory and then make again.
+3. In the board, `cd mnist-pynqz2`, run `run.sh`.
+4. Now you can use your mouse to write a number, then press the button 'q' in keyboard to exit. You can see in the terminal that our network thinks the number is what you wrote most of the time. If you want to add your own functions please modify the main.cc in src directory and then make again.
 ![2](../images/2re.PNG)
-The picture shows that mnist think it's number 5 rather than 3 or 5.
+The picture shows that mnist think it's number 2 rather than 3 or 5.
 
 ## Reference
 [Docs](https://github.com/Xilinx/Edge-AI-Platform-Tutorials/tree/master/docs/MNIST_tf)
