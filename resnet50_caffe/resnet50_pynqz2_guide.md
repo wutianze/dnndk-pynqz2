@@ -32,5 +32,5 @@
     cd /resnet50_pynqz2/
     ./resnet50
     ```
-  - When you want to use resnet50 to classify, press the button 's' in your key board and then you can see the picture and result in your window.
+  - When you want to use resnet50 to classify, press the button 's' in your key board and then you can see the result in your window.
   ![show](../images/resnet_show.PNG)

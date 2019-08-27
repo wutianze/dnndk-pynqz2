@@ -328,21 +328,18 @@ int main(int argc ,char** argv) {
     while(1) {
         std::cout<<"waitKey\n"; 
         char c = cvWaitKey(500);
+        cap >> frame;
+        cap >> frame;
+        cap >> frame;
+        cap >> frame;
+        cap >> frame;
+        imshow("video", frame);
         if(c==27) break;
         if(c==115) {
-            cap >> frame;
-            cap >> frame;
-            cap >> frame;
-            cap >> frame;
-            cap >> frame;
-            cap >> frame;
-
-            imshow("video", frame);
             run_resnet_50(taskconv, frame, "tmp");
-
         }
-        frame.release();
     }
+    frame.release();
  
 //    cvReleaseCapture(&cap);
     cvDestroyWindow("video");            
