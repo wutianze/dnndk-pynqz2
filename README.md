@@ -7,7 +7,8 @@
 <td colspan="4" align="center"><h1>Zynq 7000 DPU TRD</h1>
 </td>
 </tr>
-</table>
+</table>  
+
 # dnndk3.0-pynqz2
 - ## In this tutorial you will learn:
   1. How to use caffe model resnet50 to classify pictures using pynq-z2.
