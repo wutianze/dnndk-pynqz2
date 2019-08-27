@@ -5,7 +5,7 @@
   3. How to use DNNDK-v3.0 to optimize the trained models.
   4. How to use dpu in pynq-z2 to accelerate inference.
 - ## First download all the files to your pc.
-- ## The files is organized as followed:
+- ## The files are organized as followed:
   > mnist_tf
   >> mnist_host  
   >> mnist_pynqz2  
