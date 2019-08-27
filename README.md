@@ -18,4 +18,4 @@
 
   The mnist_tf contains the mnist model trained by tensorflow and you can read the mnist-handwriting-guide.md to learn. The resnet50_caffe contains the resnet50 model trained by caffe and you can read the resnet50_pynqz2_guide.md to learn.  
 - ## Preparation
-  Before you start, you should read build-host-dnndk.md & build-pynqz2-system first to set your environment and do some preparation.
+  Before you start, you should read build-host-dnndk.md & build-pynqz2-system.md first to set your environment and do some preparation.
