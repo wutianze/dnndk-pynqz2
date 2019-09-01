@@ -19,7 +19,7 @@ This tutorial demonstrates how to build a custom system that utilizes the 1.4.0 
 
 3. Use Xilinx SDK to build two machine learning applications that take advantage of the DPU.
 
-**Note:** The PYNQ-Z2 will be the targeted hardware platform.
+**Note:** The PYNQ-Z2 will be the targeted hardware platform. You can download all the things from BaiduWangPan, the link is [here](https://pan.baidu.com/s/1tt3h5V4QfRZZZrK00cBAbQ), code is 6gfj.
 
 # Requirements for Using the Xilinx DPU
 This section lists the software and hardware tools required to use the Xilinx&reg; Deep Learning Processor (DPU) IP to accelerate machine learning algorithms.
@@ -66,7 +66,7 @@ The folders are:
 
 - **sdk_workspace:** Empty Eclipse workspace to be used for Xilinx SDK application development
 
-- **vivado:** The Vivado Design Suite working directory includes an archived project for Ultra96 as well as a `.tcl` script to create a working `.bd`
+- **vivado:** The Vivado Design Suite working directory includes an archived project for PynqZ2 as well as a `.tcl` script to create a working `.bd`
 
 - **sdcard:** Staging area for creating the SD Card image
 
