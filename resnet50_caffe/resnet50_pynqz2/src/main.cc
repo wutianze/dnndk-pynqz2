@@ -323,15 +323,13 @@ int main(int argc ,char** argv) {
     DPUTask *taskconv = dpuCreateTask(kernelConv, 0);
     cvNamedWindow("video");
     VideoCapture cap;
+    cap.set(CV_CAP_PROP_FRAME_WIDTH, 160);
+    cap.set(CV_CAP_PROP_FRAME_HEIGHT, 120);
     cap.open(0);
     Mat frame;
     while(1) {
         std::cout<<"waitKey\n"; 
         char c = cvWaitKey(500);
-        cap >> frame;
-        cap >> frame;
-        cap >> frame;
-        cap >> frame;
         cap >> frame;
         imshow("video", frame);
         if(c==27) break;
