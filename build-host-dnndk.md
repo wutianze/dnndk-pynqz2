@@ -11,7 +11,7 @@
 
 # This Tutorial will help you build your dnndk kit in host  
 - ## Your linux version should be 14.04 or 16.04, and you should have python2.7 with pip installed if you want to use caffe.
-- ## Download [dnndk](https://www.xilinx.com/member/forms/download/dnndk-eula-xef.html?filename=xlnx_dnndk_v3.0_190624.tar.gz) and extract. This guide will use dnndk_v3.0. Download our new [install.sh](./install.sh), replace the install.sh in xilinx_dnndk_v3.0/host_x86/ with ours.
+- ## Download [dnndk](https://www.xilinx.com/member/forms/download/dnndk-eula-xef.html?filename=xlnx_dnndk_v3.0_190624.tar.gz) and extract. This guide will use dnndk_v3.0. Download our new [install.sh](./install.sh), replace the install.sh in xilinx_dnndk_v3.0/host_x86/ with ours. Then you can run `./install PynqZ2`
 - ## Installing the GPU Platform Software
   The current DNNDK release can be used on the X86 host machine with or without GPU. With GPU support, DECENT is able to run faster.  
   If GPU is available in the X86 host machine, install the necessary GPU platform software in accordance with your GPU product documentation. Ensure all versions are compatible with the version of DNNDK.  
