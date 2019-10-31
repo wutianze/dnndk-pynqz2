@@ -19,7 +19,7 @@ This tutorial demonstrates how to build a custom system that utilizes the 1.4.0 
 
 3. Use Xilinx SDK to build two machine learning applications that take advantage of the DPU.
 
-**Note:** The PYNQ-Z2 will be the targeted hardware platform. You can download all the things from BaiduWangPan, the link is [here](https://pan.baidu.com/s/1tt3h5V4QfRZZZrK00cBAbQ), code is 6gfj.
+**Note:** The PYNQ-Z2 will be the targeted hardware platform. You can download all the things from Baidu Cloud Disk, the link is [here](https://pan.baidu.com/s/1gOJaoJJ8z2jf-BaLklID3Q).
 
 # Requirements for Using the Xilinx DPU
 This section lists the software and hardware tools required to use the Xilinx&reg; Deep Learning Processor (DPU) IP to accelerate machine learning algorithms.
