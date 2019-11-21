@@ -46,6 +46,12 @@ optional arguments:
   --image            Image detection mode, will ignore all positional arguments
 ```
 ---
+Here is an example:
+```
+python yolo_video.py --model_path ./model_data/yolo-tiny.h5 --anchors_path ./model_data/tiny_yolo_anchors.txt --image
+```
+The program will accept terminal input as image name and inference it when runs.
+
 
 4. MultiGPU usage: use `--gpu_num N` to use N GPUs. It is passed to the [Keras multi_gpu_model()](https://keras.io/utils/#multi_gpu_model).
 
@@ -62,11 +68,19 @@ optional arguments:
     path/to/img2.jpg 120,300,250,600,2
     ...
     ```
+    Yolo format: `class num x_center y_center width height`, the values are ratios.
+    Here is an example:
+    ```
+    0 0.3 0.5 0.2 0.34
+    ```
 
-2. Make sure you have run `python convert.py -w yolov3.cfg yolov3.weights model_data/yolo_weights.h5`  
+2. Run `cat *.txt > merge.txt` in your training data dir, then delete the class names in merge.txt.
+   Then run `python kmeans.py --cluster_num xx --height xx --width xx --filename xx --output xx` to read the merge.txt and then aggregate n anchors, it will output a file contains all n anchors.
+
+3. Make sure you have run `python convert.py -w yolov3.cfg yolov3.weights model_data/yolo_weights.h5`  
     The file model_data/yolo_weights.h5 is used to load pretrained weights.
 
-3. Modify train.py and start training.  
+4. Modify train.py and start training.  
     `python train.py`  
     Use your trained weights or checkpoint weights with command line option `--model model_file` when using yolo_video.py
     Remember to modify class path or anchor path, with `--classes class_file` and `--anchors anchor_file`.

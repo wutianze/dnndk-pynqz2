@@ -1,9 +1,10 @@
 import cv2
+import time
 import argparse
 
 parser = argparse.ArgumentParser("description='--num:how many imgs to take, --category:class name now take'")
 parser.add_argument("--num", type=int,default=200)
-parser.add_argument("--category", type=str)
+parser.add_argument("--dir", type=str,default='images')
 args = parser.parse_args()
 
 cap = cv2.VideoCapture(0)
@@ -18,12 +19,7 @@ while(i < args.num):
     if k == 27:
         break
     if k == ord('s'):
-        flag = True
-        print("start take")
-    if k == ord('i'):
-        flag = False
-        print("stop take")
-    if flag is True:
-        cv2.imwrite("./images/%s_%d.jpg"%(args.category,i),frame)
+        ticks = time.time()
+        cv2.imwrite("./"+args.dir+"/"+ticks+".jpg",frame)
         i = i + 1
         print("now take %d"%i)

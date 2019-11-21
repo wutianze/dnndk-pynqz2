@@ -1,11 +1,12 @@
 import numpy as np
+import argparse
 
 
 class YOLO_Kmeans:
 
     def __init__(self, cluster_number, filename):
         self.cluster_number = cluster_number
-        self.filename = "2012_train.txt"
+        self.filename = filename
 
     def iou(self, boxes, clusters):  # 1 box -> k clusters
         n = boxes.shape[0]
@@ -57,8 +58,8 @@ class YOLO_Kmeans:
 
         return clusters
 
-    def result2txt(self, data):
-        f = open("yolo_anchors.txt", 'w')
+    def result2txt(self, data,output):
+        f = open(output, 'w')
         row = np.shape(data)[0]
         for i in range(row):
             if i == 0:
@@ -68,34 +69,37 @@ class YOLO_Kmeans:
             f.write(x_y)
         f.close()
 
-    def txt2boxes(self):
+    def txt2boxes(self,w,h):
         f = open(self.filename, 'r')
         dataSet = []
         for line in f:
             infos = line.split(" ")
-            length = len(infos)
-            for i in range(1, length):
-                width = int(infos[i].split(",")[2]) - \
-                    int(infos[i].split(",")[0])
-                height = int(infos[i].split(",")[3]) - \
-                    int(infos[i].split(",")[1])
-                dataSet.append([width, height])
+            width = float(infos[3])*w
+            height = float(infos[4])*h
+            dataSet.append([width, height])
         result = np.array(dataSet)
         f.close()
         return result
 
-    def txt2clusters(self):
-        all_boxes = self.txt2boxes()
+    def txt2clusters(self,width,height,output):
+        all_boxes = self.txt2boxes(width,height)
         result = self.kmeans(all_boxes, k=self.cluster_number)
         result = result[np.lexsort(result.T[0, None])]
-        self.result2txt(result)
+        self.result2txt(result,output)
         print("K anchors:\n {}".format(result))
         print("Accuracy: {:.2f}%".format(
             self.avg_iou(all_boxes, result) * 100))
 
 
 if __name__ == "__main__":
-    cluster_number = 9
-    filename = "2012_train.txt"
-    kmeans = YOLO_Kmeans(cluster_number, filename)
-    kmeans.txt2clusters()
+    parser = argparse.ArgumentParser("description='--cluster_num:how many clusters to make, --width --height:the image size, --filename:the merged yolo format data, --output:anchors file name'")
+    parser.add_argument("--cluster_num", type=int,default=5)
+    parser.add_argument("--width", type=int,default=416)
+    parser.add_argument("--height", type=int,default=416)
+    parser.add_argument("--filename", type=str,default="fpt_data/merge.txt")
+    parser.add_argument("--output", type=str,default="yolo_anchors.txt")
+    
+    args = parser.parse_args()
+    
+    kmeans = YOLO_Kmeans(args.cluster_num, args.filename)
+    kmeans.txt2clusters(args.width,args.height,args.output)
