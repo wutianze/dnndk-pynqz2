@@ -1,7 +1,7 @@
 """
 Retrain the YOLO model for your own dataset.
 """
-
+import glob
 import numpy as np
 import keras.backend as K
 from keras.layers import Input, Lambda
@@ -14,10 +14,13 @@ from yolo3.utils import get_random_data
 
 
 def _main():
-    annotation_path = 'train.txt'
+    # images: .jpg & .txt
+    annotation_path = 'images/'
     log_dir = 'logs/000/'
     classes_path = 'model_data/voc_classes.txt'
     anchors_path = 'model_data/yolo_anchors.txt'
+    first_time_model = 'model_data/yolo_weights.h5'
+    second_time_model = 'logs/003/ep074-loss26.535-val_loss27.370.h5'
     class_names = get_classes(classes_path)
     num_classes = len(class_names)
     anchors = get_anchors(anchors_path)
@@ -30,7 +33,7 @@ def _main():
             freeze_body=2, weights_path='model_data/tiny_yolo_weights.h5')
     else:
         model = create_model(input_shape, anchors, num_classes,
-            freeze_body=2, weights_path='model_data/yolo_weights.h5') # make sure you know what you freeze
+            freeze_body=2, weights_path=first_time_model) # make sure you know what you freeze
 
     logging = TensorBoard(log_dir=log_dir)
     checkpoint = ModelCheckpoint(log_dir + 'ep{epoch:03d}-loss{loss:.3f}-val_loss{val_loss:.3f}.h5',
@@ -39,13 +42,15 @@ def _main():
     early_stopping = EarlyStopping(monitor='val_loss', min_delta=0, patience=10, verbose=1)
 
     val_split = 0.1
-    with open(annotation_path) as f:
-        lines = f.readlines()
+    txt_lines = glob.glob(annotation_path + "*.txt")
+    img_lines = glob.glob(annotation_path + "*.jpg")
     np.random.seed(10101)
-    np.random.shuffle(lines)
+    np.random.shuffle(txt_lines)
+    np.random.seed(10101)
+    np.random.shuffle(img_lines)
     np.random.seed(None)
-    num_val = int(len(lines)*val_split)
-    num_train = len(lines) - num_val
+    num_val = int(len(txt_lines)*val_split)
+    num_train = len(txt_lines) - num_val
 
     # Train with frozen layers first, to get a stable loss.
     # Adjust num epochs to your dataset. This step is enough to obtain a not bad model.
@@ -56,9 +61,9 @@ def _main():
 
         batch_size = 32
         print('Train on {} samples, val on {} samples, with batch size {}.'.format(num_train, num_val, batch_size))
-        model.fit_generator(data_generator_wrapper(lines[:num_train], batch_size, input_shape, anchors, num_classes),
+        model.fit_generator(data_generator_wrapper(txt_lines[:num_train],img_lines[:num_train], batch_size, input_shape, anchors, num_classes),
                 steps_per_epoch=max(1, num_train//batch_size),
-                validation_data=data_generator_wrapper(lines[num_train:], batch_size, input_shape, anchors, num_classes),
+                validation_data=data_generator_wrapper(txt_lines[num_train:], img_lines[num_train:], batch_size, input_shape, anchors, num_classes),
                 validation_steps=max(1, num_val//batch_size),
                 epochs=50,
                 initial_epoch=0,
