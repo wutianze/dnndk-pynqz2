@@ -4,14 +4,14 @@
  * @Email: 1369130123qq@gmail.com
  * @Date: 2019-11-06 17:34:36
  * @LastEditors: Sauron Wu
- * @LastEditTime: 2019-11-27 15:31:34
+ * @LastEditTime: 2019-11-27 15:37:39
  * @Description: 
  -->
 # yolo_keras_dnndk
 Train your own yolo model and accelerate it using Xilinx DNNDK
 
 # What you can refer:
-- [darknet]()
+- [darknet](https://github.com/pjreddie/darknet)
 - [keras-yolo3](https://github.com/qqwweee/keras-yolo3.git)
 - [keras-yolo3-detail](https://github.com/SpikeKing/keras-yolo3-detection)
 - [labelImg](https://github.com/tzutalin/labelImg.git)
@@ -78,3 +78,9 @@ wget https://pjreddie.com/media/files/yolov3.weights
 ./darknet detector train path-to-generated/new.data path/yolov3_example.cfg darknet53.conv.74
 ```
 4. The final weight is in the backup dir.
+
+# Transfer to keras .h5
+In `keras-yolo3` run `python convert.py yolov3.cfg yolov3.weights model_data/yolo.h5`.
+
+# What to do next
+Please read mnist_tf guide to use DNNDK to accelerate inference of Yolo. The code in board is provided in yolo_pynqz2 dir.

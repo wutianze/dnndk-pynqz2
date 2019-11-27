@@ -4,7 +4,7 @@
 @Email: 1369130123qq@gmail.com
 @Date: 2019-11-27 13:46:08
 @LastEditors: Sauron Wu
-@LastEditTime: 2019-11-27 13:59:11
+@LastEditTime: 2019-11-27 15:45:13
 @Description: 
 '''
 import glob
@@ -17,8 +17,7 @@ img_lines = glob.glob(path + "/*.jpg")
 np.random.seed(10101)
 np.random.shuffle(img_lines)
 np.random.seed(None)
-num_val = int(len(img_lines)*val_split)
-num_train = len(img_lines) - num_val
+num_val = int(len(img_lines)*val_split) + 1
 
 os.mkdir('./generated')
 train_txt = open('generated/train.txt','w')
