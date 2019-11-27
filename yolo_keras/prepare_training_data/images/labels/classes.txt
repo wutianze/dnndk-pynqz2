@@ -1,0 +1,4 @@
+person
+arrowOb
+coneOb
+yellowOb

@@ -20,6 +20,6 @@ while(i < args.num):
         break
     if k == ord('s'):
         ticks = time.time()
-        cv2.imwrite("./"+args.dir+"/"+ticks+".jpg",frame)
+        cv2.imwrite("./"+args.dir+"/"+str(ticks)+".jpg",frame)
         i = i + 1
         print("now take %d"%i)

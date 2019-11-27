@@ -1,12 +1,13 @@
+import glob
 import numpy as np
 import argparse
 
 
 class YOLO_Kmeans:
 
-    def __init__(self, cluster_number, filename):
+    def __init__(self, cluster_number, label_path):
         self.cluster_number = cluster_number
-        self.filename = filename
+        self.label_path = label_path
 
     def iou(self, boxes, clusters):  # 1 box -> k clusters
         n = boxes.shape[0]
@@ -70,15 +71,20 @@ class YOLO_Kmeans:
         f.close()
 
     def txt2boxes(self,w,h):
-        f = open(self.filename, 'r')
         dataSet = []
-        for line in f:
-            infos = line.split(" ")
-            width = float(infos[3])*w
-            height = float(infos[4])*h
-            dataSet.append([width, height])
+        files = glob.glob(self.label_path+'*.txt')
+        for f in files:
+            if(f != self.label_path+"classes.txt"):
+                ff = open(f,'r')
+                for line in ff:
+                    infos = line.split(" ")
+                    width = float(infos[3])*w
+                    height = float(infos[4])*h
+                    dataSet.append([width, height])
+                ff.close()
+
         result = np.array(dataSet)
-        f.close()
+        print(result)
         return result
 
     def txt2clusters(self,width,height,output):
@@ -92,14 +98,14 @@ class YOLO_Kmeans:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser("description='--cluster_num:how many clusters to make, --width --height:the image size, --filename:the merged yolo format data, --output:anchors file name'")
-    parser.add_argument("--cluster_num", type=int,default=5)
+    parser = argparse.ArgumentParser("description='--cluster_number:how many clusters to make, --width --height:the image size, --label_path:the labels dir, --output:anchors file name'")
+    parser.add_argument("--cluster_number", type=int,default=5)
     parser.add_argument("--width", type=int,default=416)
     parser.add_argument("--height", type=int,default=416)
-    parser.add_argument("--filename", type=str,default="fpt_data/merge.txt")
+    parser.add_argument("--label_path", type=str,default="images/labels/")
     parser.add_argument("--output", type=str,default="yolo_anchors.txt")
     
     args = parser.parse_args()
     
-    kmeans = YOLO_Kmeans(args.cluster_num, args.filename)
-    kmeans.txt2clusters(args.width,args.height,args.output)
+    kmeans = YOLO_Kmeans(args.cluster_number, args.label_path)
+    kmeans.txt2clusters(args.width,args.height,"generated/"+args.output)
