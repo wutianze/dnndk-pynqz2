@@ -4,21 +4,26 @@
  * @Email: 1369130123qq@gmail.com
  * @Date: 2019-11-06 17:34:36
  * @LastEditors: Sauron Wu
- * @LastEditTime: 2019-11-27 15:21:32
+ * @LastEditTime: 2019-11-27 15:31:34
  * @Description: 
  -->
 # yolo_keras_dnndk
 Train your own yolo model and accelerate it using Xilinx DNNDK
 
-# What you need:
+# What you can refer:
+- [darknet]()
 - [keras-yolo3](https://github.com/qqwweee/keras-yolo3.git)
 - [keras-yolo3-detail](https://github.com/SpikeKing/keras-yolo3-detection)
 - [labelImg](https://github.com/tzutalin/labelImg.git)
-- [DNNDK]()
 
 # Generate train data:
 You can see detail information in labelImg project. Here is the steps:
 1. Prepare the environment, I follow the Pynthon3 + Qt5 commands in labelImg.
+```
+    Yolo format: `class num x_center y_center width height`, the values are ratios.
+    Here is an example:
+    0 0.3 0.5 0.2 0.34
+```
 2. Edit `data/predefined_classes.txt` to define your own classes. For example, in FPT competition, we have:
 ```
 person
@@ -37,7 +42,7 @@ description='--cluster_number:how many clusters to make, --width --height:the im
 ``` 
 
 # Train the model:
-1. Set the parameters of training process in copied xx.cfg, three yolo layers and three convolutional layers above need to be changed:
+1. Set the parameters of training process in yolov3_example.cfg, three yolo layers and three convolutional layers above need to be changed:
 ```
 [convolutional]
 size=1
@@ -59,6 +64,17 @@ random=1           #memory is small then =0
 2. Get pre-trained weight `wget https://pjreddie.com/media/files/darknet53.conv.74`
 3. Run the following command to train your model.
 ```
-./darknet detector train path-to-generated/new.data path-to-generated/yolov3.cfg darknet53.conv.74
+git clone https://github.com/pjreddie/darknet
+cd darknet
+vim Makefile
+# change GPU to 1 if you use GPU, if you have CUDNN, change CUDNN to 1 and NVCC to /usr/local/cuda-xx/bin/nvcc, if have opencv, change OPENCV to 1
+make
+
+# test:
+wget https://pjreddie.com/media/files/yolov3.weights
+./darknet detect cfg/yolov3.cfg yolov3.weights data/dog.jpg
+# test done
+
+./darknet detector train path-to-generated/new.data path/yolov3_example.cfg darknet53.conv.74
 ```
 4. The final weight is in the backup dir.
