@@ -100,8 +100,8 @@ class YOLO_Kmeans:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("description='--cluster_number:how many clusters to make, --width --height:the image size, --label_path:the labels dir, --output:anchors file name'")
     parser.add_argument("--cluster_number", type=int,default=5)
-    parser.add_argument("--width", type=int,default=416)
-    parser.add_argument("--height", type=int,default=416)
+    parser.add_argument("--width", type=int,default=640)
+    parser.add_argument("--height", type=int,default=480)
     parser.add_argument("--label_path", type=str,default="images/labels/")
     parser.add_argument("--output", type=str,default="yolo_anchors.txt")
     

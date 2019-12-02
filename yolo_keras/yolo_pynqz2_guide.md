@@ -4,7 +4,7 @@
  * @Email: 1369130123qq@gmail.com
  * @Date: 2019-11-06 17:34:36
  * @LastEditors: Sauron Wu
- * @LastEditTime: 2019-11-27 15:37:39
+ * @LastEditTime: 2019-12-02 11:11:08
  * @Description: 
  -->
 # yolo_keras_dnndk
@@ -38,7 +38,7 @@ light
 4. Run `python generate_txt.py` to create `train.txt val.txt new.data` for future use.
 5. Run `kmeans.py` to find anchor sizes, it will create `yolo_anchors.txt` which is specified in --output. The usage is as follows:
 ```
-description='--cluster_number:how many clusters to make, --width --height:the image size, --filename:the merged yolo format data, --output:anchors file name'
+description='--cluster_number:how many clusters to make, --width --height:the image size, --label_path:the labels dir, --output:anchors file name'
 ``` 
 
 # Train the model:
@@ -53,7 +53,7 @@ activation=linear
 
 [yolo]
 mask = 0,1,2
-anchors = 10,13,  16,30,  33,23,  30,61,  62,45,  59,119,  116,90,  156,198,  373,326
+anchors = 10,13,  16,30,  33,23,  30,61,  62,45,  59,119,  116,90,  156,198,  373,326  # the clusters generated before
 classes=5          # classes number
 num=9
 jitter=.3
