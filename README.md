@@ -4,7 +4,7 @@
  * @Email: 1369130123qq@gmail.com
  * @Date: 2019-08-27 10:48:42
  * @LastEditors: Sauron Wu
- * @LastEditTime: 2019-11-21 09:33:30
+ * @LastEditTime: 2019-12-03 09:28:32
  * @Description: 
  -->
 <table>
@@ -48,4 +48,4 @@
 - ## Preparation
   Before you start, you should read build-host-dnndk.md & build-pynqz2-system.md first to set your environment and do some preparation. I recommend you learn mnist_tf before running into yolo_keras.
 
-# If you have any problem, please open an issue. If you like this project please star it to support.
+# If you have any problem, please open an issue. If you like this project please star it to support. And you wanna something more exciting? See [Pynq Car](https://github.com/wutianze/pynq_car)

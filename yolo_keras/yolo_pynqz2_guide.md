@@ -4,7 +4,7 @@
  * @Email: 1369130123qq@gmail.com
  * @Date: 2019-11-06 17:34:36
  * @LastEditors: Sauron Wu
- * @LastEditTime: 2019-12-02 11:11:08
+ * @LastEditTime: 2019-12-04 10:11:55
  * @Description: 
  -->
 # yolo_keras_dnndk
@@ -68,6 +68,7 @@ git clone https://github.com/pjreddie/darknet
 cd darknet
 vim Makefile
 # change GPU to 1 if you use GPU, if you have CUDNN, change CUDNN to 1 and NVCC to /usr/local/cuda-xx/bin/nvcc, if have opencv, change OPENCV to 1
+
 make
 
 # test:
@@ -77,7 +78,9 @@ wget https://pjreddie.com/media/files/yolov3.weights
 
 ./darknet detector train path-to-generated/new.data path/yolov3_example.cfg darknet53.conv.74
 ```
-4. The final weight is in the backup dir.
+4. The final weight is in the backup dir. If you want to change the store tactic, refer to examples/detector.c line 138, set the values as you like. Remember to `make clean && make` after modification.
+
+5. After the .weights file is generated, you can test it using darknet by replacing the `cfg/coco.data` with your `new.data` or change the code in `example/darknet.c` line 442 and remake.
 
 # Transfer to keras .h5
 In `keras-yolo3` run `python convert.py yolov3.cfg yolov3.weights model_data/yolo.h5`.
