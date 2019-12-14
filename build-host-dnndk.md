@@ -38,5 +38,5 @@
   source activate decent
   (decent)$ cd $YourDir/xilinx_dnndk_v3.0/host_x86/decent-tf/ubuntu$YourLinuxVersion/
   (decent)$ pip install ./tensorflow* # Select the right installation package for your environment
-  (decent)$ pip install numpy opencv-python sklearn scipy progressbar2
+  (decent)$ pip install numpy opencv-python sklearn scipy progressbar2 keras==2.2.0
   ```

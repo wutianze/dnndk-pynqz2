@@ -105,3 +105,5 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+./yolo_keras/prepare_training_data/trainData/*
