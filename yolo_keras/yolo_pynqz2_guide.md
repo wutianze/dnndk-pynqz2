@@ -86,4 +86,4 @@ wget https://pjreddie.com/media/files/yolov3.weights
 In `keras-yolo3` run `python convert.py yolov3.cfg yolov3.weights model_data/yolo.h5`.
 
 # What to do next
-Please read mnist_tf guide to use DNNDK to accelerate inference of Yolo. The code in board is provided in yolo_pynqz2 dir.
+Please read [guide](https://github.com/wutianze/pynq_car/blob/master/Pynq-Z2_AD_Car/host-guide/dnndk_usage.md) to use DNNDK to accelerate inference of Yolo. The code in board is provided in yolo_pynqz2 dir.
