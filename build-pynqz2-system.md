@@ -461,8 +461,8 @@ sync
 
 ## Step 2:	Boot the PYNQ-Z2
 Place the micro SD card into the PYNQ-Z2 and power on the board. Once the board has booted, login using the following credentials:
-- username = **root**
-- password = **root**
+- username = **root**, for image downloaded from baidu cloud: **xilinx**
+- password = **root**, for image downloaded from baidu cloud: **xilinx**
 
 ## Step 3: Config the network
 
