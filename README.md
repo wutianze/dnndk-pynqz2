@@ -48,4 +48,4 @@
 - ## Preparation
   Before you start, you should read build-host-dnndk.md & build-pynqz2-system.md first to set your environment and do some preparation. I recommend you learn mnist_tf before running into yolo_keras.
 
-# If you have any problem, please open an issue. If you like this project please star and sponsor to support. And you wanna something more exciting? See [Pynq Car](https://github.com/wutianze/pynq_car)
+# If you have any problem, please open an issue. If you like this project please star to support. And you wanna something more exciting? See [Pynq Car](https://github.com/wutianze/pynq_car)
