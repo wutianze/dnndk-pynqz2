@@ -26,7 +26,7 @@
   4. How to use DNNDK-v3.0 to optimize the trained models.
   5. How to use dpu in pynq-z2 to accelerate inference.
 - ## First download all the files to your pc.
-  You can also download the system image of pynq-z2 we provided [here](https://pan.baidu.com/s/1gOJaoJJ8z2jf-BaLklID3Q), it embeds DPU IP into pynq system and fixes some problems of official image. For more details, please refer to [pynq_car](https://github.com/wutianze/pynq_car).
+  You can also download the system image of pynq-z2 we provided [here](https://pan.baidu.com/s/1gOJaoJJ8z2jf-BaLklID3Q), it embeds DPU IP into pynq system and fixes some problems of official image. For more details, please refer to [HydraMini](https://github.com/wutianze/HydraMini).
 - ## The most important files are organized as followed:
   > mnist_tf
   >> mnist_host  
@@ -48,4 +48,4 @@
 - ## Preparation
   Before you start, you should read build-host-dnndk.md & build-pynqz2-system.md first to set your environment and do some preparation. I recommend you learn mnist_tf before running into yolo_keras.
 
-# If you have any problem, please open an issue. If you like this project please star to support. And you wanna something more exciting? See [Pynq Car](https://github.com/wutianze/pynq_car)
+# If you have any problem, please open an issue. If you like this project please star to support. And you wanna something more exciting? See [HydraMini](https://github.com/wutianze/HydraMini)
