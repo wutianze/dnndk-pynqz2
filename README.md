@@ -26,7 +26,7 @@
   4. How to use DNNDK-v3.0 to optimize the trained models.
   5. How to use dpu in pynq-z2 to accelerate inference.
 - ## First download all the files to your pc.
-  You can also download the system image of pynq-z2 we provided [in Baidu Cloud](https://pan.baidu.com/s/1gOJaoJJ8z2jf-BaLklID3Q) or [Google Cloud](https://drive.google.com/file/d/1vuwzj5Xu05-Jubmzv7Tkx-XbpLa_D_4q/view?usp=sharing)(Sorry, You may need to download from Google Cloud if some files are missing in build-pynqz2-system.md, I will update this in the future), it embeds DPU IP into pynq system and fixes some problems of official image. For more details, please refer to [HydraMini](https://github.com/wutianze/HydraMini).
+  You can also download the system image of pynq-z2 we provided [in Baidu Cloud](https://pan.baidu.com/s/1gOJaoJJ8z2jf-BaLklID3Q) or [Google Cloud](https://drive.google.com/file/d/1vuwzj5Xu05-Jubmzv7Tkx-XbpLa_D_4q/view?usp=sharing)(If some files are missing, pls find them [here](https://github.com/sumilao/Zynq-7000-DPU-TRD)), it embeds DPU IP into pynq system and fixes some problems of official image. For more details, please refer to [HydraMini](https://github.com/wutianze/HydraMini).
 - ## The most important files are organized as followed:
   > mnist_tf
   >> mnist_host  
