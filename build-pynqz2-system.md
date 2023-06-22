@@ -10,6 +10,7 @@
 </table>
 
 # Introduction
+The original link is [here](https://github.com/sumilao/Zynq-7000-DPU-TRD). If some files are missing, try to follow the original project's tutorial.
 
 This tutorial demonstrates how to build a custom system that utilizes the 1.4.0 version of Xilinx&reg; Deep Learning Processor (DPU) IP to accelerate machine learning algorithms using the following development flow:
 
