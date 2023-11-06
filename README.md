@@ -46,7 +46,8 @@
 
   The mnist_tf contains the mnist model trained by tensorflow and you can read the mnist-handwriting-guide.md to learn. The resnet50_caffe contains the resnet50 model trained by caffe and you can read the resnet50_pynqz2_guide.md to learn.  The yolo_keras provide a yolo implementation using keras, you can download the pre-trained weights of yolo from darknet.
 - ## Preparation
-  Before you start, you should read build-host-dnndk.md & build-pynqz2-system.md first to set your environment and do some preparation. I recommend you learn mnist_tf before running into yolo_keras. And here is a wonderful [practice](https://github.com/andre1araujo/YOLO-on-PYNQ-Z2) of this project presented by André Dias Araújo, it implements a YOLOv3 object detector on a PYNQ-Z2 PLD, making use of the Zynq-7020 to accelerate the inference and provide accurate results.
+  Before you start, you should read build-host-dnndk.md & build-pynqz2-system.md first to set your environment and do some preparation. I recommend you learn mnist_tf before running into yolo_keras.
 
 # If you have any problem, please open an issue. If you like this project please star to support. 
+## Here is a wonderful [practice](https://github.com/andre1araujo/YOLO-on-PYNQ-Z2) of this project presented by André Dias Araújo, it implements a YOLOv3 object detector on a PYNQ-Z2 PLD, making use of the Zynq-7020 to accelerate the inference and provide accurate results.
 ## You wanna something more exciting? See [HydraMini](https://github.com/wutianze/HydraMini)
